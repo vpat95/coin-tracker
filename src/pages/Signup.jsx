@@ -44,8 +44,7 @@ const Signup = () => {
             style={{minHeight: "100vh"}}
         >
             <div className="w-100 d-flex flex-column" style={{maxWidth: '400px'}}>
-                <Title />
-                <Card className='text-bg-dark'>
+                <Card style={{background:'black'}} className='text-light'>
                     <Card.Body>
                         <h2 className='text-center mb-4'>Sign Up</h2>
                         <Form onSubmit={handleSubmit}>

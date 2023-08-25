@@ -27,12 +27,11 @@ function Login() {
     
     return (
         <Container
-            className=" d-flex mt-5 pt-5 justify-content-center" 
+            className="d-flex mt-5 pt-5 justify-content-center" 
             style={{minHeight: "100vh"}}
         >
             <div className="w-100 d-flex flex-column" style={{maxWidth: '400px'}}>
-                <Title />
-                <Card className='text-bg-dark'>
+                <Card style={{background:'black'}} className='text-light shadow-'>
                     <Card.Body>
                         <h2 className='text-center mb-4'>Log In</h2>
                         <Form className="text-light" onSubmit={handleSubmit}>
