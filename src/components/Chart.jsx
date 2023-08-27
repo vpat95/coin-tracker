@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 
-const Chart = ({ name, id }) => {
+const Chart = ({ id }) => {
 
     const [coinData, setCoinData] = useState(null)
     const [formData, setFormData] = useState('Week')
@@ -50,7 +50,7 @@ const Chart = ({ name, id }) => {
     }, [formData])
     
     useEffect(() => {
-        axios.get(`https://api.coincap.io/v2/assets/${id.toLowerCase()}/history?interval=${apiInterval.interval}&start=${apiInterval.start}&end=${apiInterval.end}`)
+        axios.get(`https://api.coincap.io/v2/assets/${id}/history?interval=${apiInterval.interval}&start=${apiInterval.start}&end=${apiInterval.end}`)
             .then(res => setCoinData(res.data.data))
             .catch(error => console.log('error', error));
     }, [apiInterval])

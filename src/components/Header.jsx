@@ -11,7 +11,8 @@ const Header = () => {
 
   const navLinkStyle = ({ isActive }) => {
     return {
-      fontWeight: isActive ? "bold" : "",
+      color: isActive ? '#dfbb46' : '#f8f9fa',
+      fontStyle: isActive ? 'oblique ' : '',
     }
   }
 
@@ -26,14 +27,14 @@ const Header = () => {
       <div className="links">
         {user ? (
                 <>
-                  <NavLink  className="text-light" to="/" style={navLinkStyle}>Dashboard</NavLink>
-                  <NavLink  className="text-light" to="/profile" style={navLinkStyle}>Profile</NavLink>
+                  <NavLink className='px-2' to="/" style={navLinkStyle}>Dashboard</NavLink>
+                  <NavLink className='px-2 ' to="/watchlist" style={navLinkStyle}>Watchlist</NavLink>
                   <Button style={{background: '#4655df', border:'none' , transform:'scale(0.7,0.7)'}} onClick={logoutUser}>Logout</Button>
                 </>
                 )
               : (
                 <>
-                  <NavLink className="text-light" to="/" style={navLinkStyle}>Dashboard</NavLink>
+                  <NavLink className='px-2 ' to="/" style={navLinkStyle}>Dashboard</NavLink>
                   <Link to='/login'>
                     <Button style={{background: '#4655df', border:'none' , transform:'scale(0.7,0.7)'}}>Login</Button>
                   </Link>

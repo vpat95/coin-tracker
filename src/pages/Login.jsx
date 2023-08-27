@@ -31,7 +31,7 @@ function Login() {
             style={{minHeight: "100vh"}}
         >
             <div className="w-100 d-flex flex-column" style={{maxWidth: '400px'}}>
-                <Card style={{background:'black'}} className='text-light shadow-'>
+                <Card style={{background:'black'}} className='text-light'>
                     <Card.Body>
                         <h2 className='text-center mb-4'>Log In</h2>
                         <Form className="text-light" onSubmit={handleSubmit}>

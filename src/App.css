@@ -1,4 +1,6 @@
-
+:root {
+  background: #212529;
+}
 .links{
   display: flex;
   justify-content: space-between;
@@ -34,4 +36,8 @@ a:active {
 
 p{
   font-family:Arial, Helvetica, sans-serif;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(159, 159, 159) !important;
 }
