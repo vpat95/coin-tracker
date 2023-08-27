@@ -18,14 +18,17 @@ function App() {
   const [coins, setCoins] = useState([])
   const [favorites, setFavorites] = useState([])
   const [numCoins, setNumCoins] = useState(20)
-  console.log(numCoins)
-  console.log(coins)
-
+  const [reverse, setReverse] = useState(false)
 
   const getData = async () => {
     try {
       const res = await axios.get(`https://api.coincap.io/v2/assets?limit=${numCoins}`)
+      if (reverse === false) {
       setCoins(res.data.data)
+      }
+      else {
+        setCoins(res.data.data.reverse())
+      }
     }
     catch (err) {
       console.log('err', err)
@@ -42,7 +45,7 @@ function App() {
     return () => {
       clearInterval(id)
     }
-  }, [numCoins])
+  }, [numCoins, reverse])
 
   const handleMoreClick = () => {
     setNumCoins(() => numCoins + 20)
@@ -56,7 +59,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/' element={<Homepage favorites={favorites} setFavorites={setFavorites} coins={coins} setCoins={setCoins} handleMoreClick={handleMoreClick}/>} />
+          <Route path='/' element={<Homepage favorites={favorites} setFavorites={setFavorites} coins={coins} setCoins={setCoins} handleMoreClick={handleMoreClick} reverse={reverse} setReverse={setReverse}/>} />
           <Route element={<PrivateRoutes />}>
             <Route path='/watchlist' element={<Watchlist favorites={favorites} coins={coins} setFavorites={setFavorites} />} />
           </Route>

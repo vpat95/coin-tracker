@@ -5,11 +5,16 @@ import Coins from '../components/Coins'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import {HiArrowsUpDown} from 'react-icons/hi2'
 
-function Homepage({coins, favorites, setFavorites, handleMoreClick}) {
+function Homepage({coins, reverse, setReverse, favorites, setFavorites, handleMoreClick}) {
     const [search, setSearch] = useState('')
 
     const filteredCoins = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()) )
+
+    const handleReverse = () =>{
+        setReverse(() => !reverse)
+    }
 
     return (
         <>
@@ -23,7 +28,7 @@ function Homepage({coins, favorites, setFavorites, handleMoreClick}) {
             <Container style={{ color: '#4655df' }} className='shadow rounded-lg p-3 mt-3 bg-dark'>
                 <Row className='flex-row  align-items-center'>
                     <Col lg={1}></Col>
-                    <Col lg={1}>Rank </Col>
+                    <Col lg={1}>Rank <HiArrowsUpDown style={{cursor:'pointer'}} onClick={handleReverse} /></Col>
                     <Col lg={1}>Symbol</Col>
                     <Col lg={3}>Name</Col>
                     <Col lg={2}>Price</Col>
