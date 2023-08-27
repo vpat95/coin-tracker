@@ -4,14 +4,15 @@ import Row from 'react-bootstrap/Row'
 import Coins from '../components/Coins'
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
-function Homepage({coins, favorites, setFavorites}) {
+function Homepage({coins, favorites, setFavorites, handleMoreClick}) {
     const [search, setSearch] = useState('')
 
     const filteredCoins = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()) )
 
     return (
-        <div className='all'>
+        <>
             <Row className='pt-3'>
                 <Col lg={{span:2, offset:9}}>
                     <Form.Group className=" ">
@@ -31,8 +32,16 @@ function Homepage({coins, favorites, setFavorites}) {
                     <Col className='text-center' lg={1}>Change (24Hr)</Col>
                 </Row>
                 {filteredCoins.map(coin => <Coins favorites={favorites} setFavorites={setFavorites}  key={coin.id} coin={coin} />)}
+                {coins.length < 100 ? (
+                <div className='d-flex justify-content-center'>
+                    <Button onClick={handleMoreClick}>View More</Button>
+                </div>
+                )
+                :
+                null
+                }
             </Container>
-        </div>
+        </>
     )
 }
 
