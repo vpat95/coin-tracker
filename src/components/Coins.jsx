@@ -1,15 +1,38 @@
-import React,{useState} from 'react'
+import React,{useState, useRef, useEffect} from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import MoreDetails from './MoreDetails'
 import { AiFillStar } from "react-icons/ai";
 import { useAuth } from '../context/AuthContext';
 
-
-
 function Coins({ coin, favorites, setFavorites }) {
-
+    const { rank, symbol, name, priceUsd, marketCapUsd, supply, changePercent24Hr } = coin
+    const [details, setDetails] = useState(false)
     const {user} = useAuth()
+    const [color, setColor] = useState('')
+    const prevPriceRef = useRef(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceUsd))
+
+    useEffect(() => {
+        const prevPrice = prevPriceRef.current
+        
+        setTimeout(() =>{
+            setColor('')
+        }, 1000)
+
+        if ((new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceUsd)) > prevPrice){
+            setColor('rgba(78,232,48,.2)')
+        }
+        else if ((new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceUsd)) < prevPrice){
+            setColor('rgba(243,118,118,.2)')
+        }
+        else {
+            setColor('')
+        }
+
+        prevPriceRef.current = (new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceUsd))
+
+    }, [coin])
+    
 
     const handleClick = () =>{
         if(!!favorites.find(fav => fav === coin.name)){
@@ -19,10 +42,6 @@ function Coins({ coin, favorites, setFavorites }) {
             setFavorites(() => [...favorites, coin.name])
         }
     }
-
-
-    const { rank, symbol, name, priceUsd, marketCapUsd, supply, changePercent24Hr } = coin
-    const [details, setDetails] = useState(false)
 
     function numberShortener(num) {
         if (num > 1000000000000) {
@@ -42,10 +61,9 @@ function Coins({ coin, favorites, setFavorites }) {
         }
     }
 
-
     return (
         <>
-            <Row style={{cursor:'pointer'}} className='text-light shadow rounded-pill flex-row py-1 my-2 coin'>
+            <Row style={{cursor:'pointer', background:color}} className='text-light shadow rounded-pill flex-row py-1 my-2 coin'>
                 {user ? (
                     <>
                         <Col lg={1}><AiFillStar fill={favorites.find(fav => fav === coin.name)? '#dfbb46' : 'white'} onClick={handleClick}/></Col>
@@ -57,13 +75,13 @@ function Coins({ coin, favorites, setFavorites }) {
                         <Col lg={1} onClick={() => setDetails(!details)}>{numberShortener(supply)}</Col>
                         {changePercent24Hr === 0 
                         ? 
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1} style={{ color: 'black' }}>{`${numberShortener(changePercent24Hr)} %`}</Col> 
+                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1} style={{ color: 'black' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col> 
                         : 
                         changePercent24Hr < 0 
                         ?
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'red' }}>{`${numberShortener(changePercent24Hr)} %`}</Col>
+                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'red' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
                         :
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'green' }}>{`${numberShortener(changePercent24Hr)} %`}</Col>
+                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'green' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
                         }
                     </>
                         )
@@ -79,13 +97,13 @@ function Coins({ coin, favorites, setFavorites }) {
                         <Col lg={1} onClick={() => setDetails(!details)}>{numberShortener(supply)}</Col>
                         {changePercent24Hr === 0 
                         ? 
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1} style={{ color: 'black' }}>{`${numberShortener(changePercent24Hr)} %`}</Col> 
+                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1} style={{ color: 'black' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col> 
                         : 
                         changePercent24Hr < 0 
                         ?
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'red' }}>{`${numberShortener(changePercent24Hr)} %`}</Col>
+                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'red' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
                         :
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'green' }}>{`${numberShortener(changePercent24Hr)} %`}</Col>
+                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'green' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
                         }
                     </>
                     )

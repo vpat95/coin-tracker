@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 
 const MoreDetails = ({coin, numberShortener}) => {
-    const { id, image, name, symbol} = coin
+    const { id, name, symbol, volumeUsd24Hr, vwap24Hr, maxSupply } = coin
 
   return (
     <>
@@ -13,10 +13,9 @@ const MoreDetails = ({coin, numberShortener}) => {
         <Row className='align-items-center'>
             <Col lg={4}>
                  <Card style={{background:'rgb(65, 65, 105, 0.1)'}} className='text-light p-2 rounded border-0'>
-                    <p style={{color:'#4655df'}}>Price Low (24hr): <span className='text-light'>Test</span></p>
-                    <p style={{color:'#4655df'}}>Price High (24hr): <span className='text-light'>Test</span></p>
-                    <p style={{color:'#4655df'}}>Volume (24hr): <span className='text-light'>Test</span></p>
-                    <p style={{color:'#4655df'}}>Price Change (24hr): <span className='text-light'>Test</span></p>
+                    <p style={{color:'#4655df'}}>Volume (24hr): <span className='text-light'>${numberShortener(volumeUsd24Hr)}</span></p>
+                    <p style={{color:'#4655df'}}>VWAP (24hr): <span className='text-light'>${numberShortener(vwap24Hr)}</span></p>
+                    <p style={{color:'#4655df'}}>Max Supply: <span className='text-light'>${numberShortener(maxSupply)}</span></p>
                  </Card>
             </Col>
             <Col lg={8}>
