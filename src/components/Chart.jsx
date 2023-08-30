@@ -18,8 +18,6 @@ const Chart = ({ id }) => {
         end: Date.now()
     })
 
-    console.log(coinData)
-
     const handleChange = (e) => {
         setFormData(() => e.target.value)
     }
