@@ -88,22 +88,22 @@ function Coins({ coin, favorites, setFavorites }) {
                     : (
 
                     <>
-                        <Col lg={1}></Col>
-                        <Col lg={1} onClick={() => setDetails(!details)}>{rank}</Col>
-                        <Col lg={1} onClick={() => setDetails(!details)}>{symbol.toUpperCase()}</Col>
-                        <Col lg={3} onClick={() => setDetails(!details)}><img className='symbol' src={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`} alt={name}/> {name}</Col>
-                        <Col lg={2} onClick={() => setDetails(!details)}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceUsd)}</Col>
-                        <Col lg={2} onClick={() => setDetails(!details)}>{`$${numberShortener(marketCapUsd)}`}</Col>                
-                        <Col lg={1} onClick={() => setDetails(!details)}>{numberShortener(supply)}</Col>
+                        <Col xs={1} lg={1}></Col>
+                        <Col xs={1} lg={1} onClick={() => setDetails(!details)}>{rank}</Col>
+                        <Col xs={1} lg={1} onClick={() => setDetails(!details)}>{symbol.toUpperCase()}</Col>
+                        <Col xs={3} lg={3} onClick={() => setDetails(!details)}><img className='symbol' src={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`} alt={name}/> {name}</Col>
+                        <Col xs={2} lg={2} onClick={() => setDetails(!details)}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceUsd)}</Col>
+                        <Col xs={2} lg={2} onClick={() => setDetails(!details)}>{`$${numberShortener(marketCapUsd)}`}</Col>                
+                        <Col xs={1} lg={1} onClick={() => setDetails(!details)}>{numberShortener(supply)}</Col>
                         {changePercent24Hr === 0 
                         ? 
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1} style={{ color: 'black' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col> 
+                        <Col className='text-center' onClick={() => setDetails(!details)} xs={1} lg={1} style={{ color: 'black' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col> 
                         : 
                         changePercent24Hr < 0 
                         ?
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'red' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
+                        <Col className='text-center' onClick={() => setDetails(!details)} xs={1} lg={1}  style={{ color: 'red' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
                         :
-                        <Col className='text-center' onClick={() => setDetails(!details)} lg={1}  style={{ color: 'green' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
+                        <Col className='text-center' onClick={() => setDetails(!details)} xs={1} lg={1}  style={{ color: 'green' }}>{`${parseFloat(changePercent24Hr, 10).toFixed(2)} %`}</Col>
                         }
                     </>
                     )

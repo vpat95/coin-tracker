@@ -27,14 +27,14 @@ function Homepage({coins, reverse, setReverse, favorites, setFavorites, handleMo
             </Row>
             <Container style={{ color: '#4655df' }} className='shadow rounded-lg p-3 mt-3 bg-dark'>
                 <Row className='flex-row  align-items-center'>
-                    <Col lg={1}></Col>
-                    <Col lg={1}>Rank <HiArrowsUpDown style={{cursor:'pointer'}} onClick={handleReverse} /></Col>
-                    <Col lg={1}>Symbol</Col>
-                    <Col lg={3}>Name</Col>
-                    <Col lg={2}>Price</Col>
-                    <Col lg={2}>Market Cap</Col>
-                    <Col lg={1}>Supply</Col>
-                    <Col className='text-center' lg={1}>Change (24Hr)</Col>
+                    <Col xs={1} lg={1}></Col>
+                    <Col xs={1} lg={1}>Rank <HiArrowsUpDown style={{cursor:'pointer'}} onClick={handleReverse} /></Col>
+                    <Col xs={1} lg={1}>Symbol</Col>
+                    <Col xs={3} lg={3}>Name</Col>
+                    <Col xs={2} lg={2}>Price</Col>
+                    <Col xs={2} lg={2}>Market Cap</Col>
+                    <Col xs={1} lg={1}>Supply</Col>
+                    <Col className='text-center' xs={1}  lg={1}>Change (24Hr)</Col>
                 </Row>
                 {filteredCoins.map(coin => <Coins favorites={favorites} setFavorites={setFavorites}  key={coin.id} coin={coin} />)}
                 {coins.length < 100 ? (
