@@ -2,7 +2,6 @@ import React,{useEffect, useRef} from 'react'
 import { useAuth } from '../context/AuthContext'
 import {Link, useNavigate} from 'react-router-dom'
 import {Card, Form, Button, Container} from 'react-bootstrap'
-import Title from '../components/Title'
 
 function Login() {
     const {user, loginUser} = useAuth()

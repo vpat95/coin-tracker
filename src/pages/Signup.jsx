@@ -3,7 +3,6 @@ import React,{useRef, useEffect} from 'react'
 import {Card, Form, Button, Container} from 'react-bootstrap'
 import {Link, useNavigate} from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import Title from '../components/Title'
 
 
 const Signup = () => {

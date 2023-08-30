@@ -65,7 +65,8 @@ const Chart = ({ id }) => {
                     labels: coinData.map(day => (new Date(day.time)).toLocaleDateString()),
                     datasets: [{
                         label: 'Price',
-                        data: coinData.map(day => day.priceUsd)
+                        data: coinData.map(day => day.priceUsd),
+                        borderColor: coinData[coinData.length -1].priceUsd > coinData[0].priceUsd ? 'green' : 'red'
                     }]
                 }
                 )
@@ -75,7 +76,8 @@ const Chart = ({ id }) => {
                     labels: coinData.map(day => (new Date(day.time)).toLocaleTimeString()),
                     datasets: [{
                         label: 'Price',
-                        data: coinData.map(day => day.priceUsd)
+                        data: coinData.map(day => day.priceUsd),
+                        borderColor: coinData[coinData.length -1].priceUsd > coinData[0].priceUsd ? 'green' : 'red'
                     }]
                 }
                 )
