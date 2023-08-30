@@ -4,7 +4,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import {Card, Form, Button, Container} from 'react-bootstrap'
 
 function Login() {
-    const {user, loginUser} = useAuth()
+    const {user, loginUser, wrong} = useAuth()
     const [login, setLoginInfo] = useState({
         email: 'demo@demo.com',
         password: 'demo1234'
@@ -46,7 +46,9 @@ function Login() {
                     <Card.Body>
                         <h2 className='text-center mb-4'>Log In</h2>
                         <Form className="text-light" onSubmit={handleSubmit}>
+                            {wrong === true ? null : <p style={{color:'red'}}>Incorrect email/password</p>}
                             <Form.Group id="email">
+                                <Form.Label></Form.Label>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control onChange={handleChange} name='email' type="email" value={login.email} required/>
                             </Form.Group>

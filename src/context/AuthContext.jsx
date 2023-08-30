@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
+  const [wrong, setWrong] = useState(true)
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -22,9 +23,12 @@ const AuthProvider = ({ children }) => {
 
         let accountDetails = await account.get()
         setUser(accountDetails)
+        setWrong(() => true)
+        
 
     }catch(err){
         console.log(err)
+        setWrong(() => false)
     }
     setLoading(false)
   }
@@ -73,12 +77,13 @@ const AuthProvider = ({ children }) => {
     user,
     loginUser,
     logoutUser,
-    registerUser
+    registerUser,
+    wrong
   };
 
   return (
     <AuthContext.Provider value={contextData}>
-      {loading ? <p>Loading...</p> : children}
+      {loading ? <p style={{color:'white'}}>Loading...</p> : children}
     </AuthContext.Provider>
   );
 };
